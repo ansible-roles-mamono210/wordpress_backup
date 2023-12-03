@@ -78,7 +78,6 @@ scenario:
     - destroy
     - syntax
     - create
-    - prepare
     - converge
     - verify
     - cleanup

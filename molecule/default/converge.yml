@@ -6,4 +6,4 @@
   tasks:
     - name: Execute
       ansible.builtin.include_role:
-        name: wordpress_install
+        name: wordpress_backup
