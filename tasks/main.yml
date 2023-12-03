@@ -25,5 +25,7 @@
     "wp db export
      {{ wp_backup_data_path }}/{{ wp_db_dump_data_sql }}
      --allow-root"
+  register: wp_cli
+  changed_when: wp_cli.stdout | length > 0
   args:
     chdir: '{{ wp_installed_path }}'
