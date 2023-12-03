@@ -1,7 +1,7 @@
 ---
 - name: Delete the backup data storage directory / Initialization process
   ansible.builtin.file:
-    path: '{{ backup_data_path }}'
+    path: '{{ wp_backup_data_path }}'
     state: absent
 
 - name: Create the backup data storage directory
