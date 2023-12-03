@@ -33,7 +33,7 @@ jobs:
         type: string
       molecule-scenario-name:
         type: string
-    working_directory: ~/wordpress_install
+    working_directory: ~/wordpress_backup
     steps:
       - checkout
       - aws-cli/setup
