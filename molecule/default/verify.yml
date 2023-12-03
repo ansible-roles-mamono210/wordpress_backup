@@ -1,0 +1,32 @@
+---
+- name: Verify
+  become: true
+  hosts: all
+
+  tasks:
+    - name: Check if 'wp-content' directory is archived
+      ansible.builtin.stat:
+        path: "{{ wp_backup_data_path }}/wp-content.tar.gz"
+      register: wp_content_file_stat
+
+    - name: Check if database is dumped
+      ansible.builtin.stat:
+        path: "{{ wp_backup_data_path }}/{{ wp_db_dump_data_sql }}"
+      register: db_dump_file_stat
+
+    - name: Check OS version
+      ansible.builtin.command: cat /etc/redhat-release
+      register: os_version
+      changed_when: false
+
+    - name: Make sure 'wp-content' archived file exists
+      ansible.builtin.assert:
+        that: wp_content_file_stat.stat.exists == true
+
+    - name: Make sure database dumped file exists
+      ansible.builtin.assert:
+        that: db_dump_file_stat.stat.exists == true
+
+    - name: Show OS version
+      ansible.builtin.debug:
+        var: os_version

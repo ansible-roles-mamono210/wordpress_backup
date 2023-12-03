@@ -1,0 +1,31 @@
+---
+- name: Delete the backup data storage directory / Initialization process
+  ansible.builtin.file:
+    path: '{{ wp_backup_data_path }}'
+    state: absent
+
+- name: Create the backup data storage directory
+  ansible.builtin.file:
+    path: '{{ wp_backup_data_path }}'
+    owner: '{{ wp_backup_data_owner }}'
+    group: '{{ wp_backup_data_group }}'
+    mode: 0755
+    state: directory
+
+- name: Archive the 'wp-content' directory
+  community.general.archive:
+    path: "{{ wp_installed_path }}/wp-content"
+    dest: "{{ wp_backup_data_path }}/wp-content.tar.gz"
+    owner: '{{ wp_backup_data_owner }}'
+    group: '{{ wp_backup_data_group }}'
+    mode: 0755
+
+- name: Dump MariaDB / Database
+  ansible.builtin.command:
+    "sudo -u apache /usr/local/bin/wp db export
+     {{ wp_backup_data_path }}/{{ wp_db_dump_data_sql }}
+     --allow-root"
+  register: wp_cli
+  changed_when: wp_cli.stdout | length > 0
+  args:
+    chdir: '{{ wp_installed_path }}'
