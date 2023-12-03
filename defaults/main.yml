@@ -1,0 +1,8 @@
+---
+# Working directory
+wp_backup_data_path: '/tmp/wp-install'
+wp_backup_data_owner: 'apache'
+wp_backup_data_group: 'apache'
+
+wp_installed_path: '/var/www/html/wordpress'
+wp_db_dump_data_sql: 'wp.sql'

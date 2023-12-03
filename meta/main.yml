@@ -1,0 +1,15 @@
+---
+dependencies: []
+galaxy_info:
+  author: mamono210
+  company: no name
+  description: WordPress data backup for Linux.
+  galaxy_tags: []
+  license: "license (BSD, MIT)"
+  min_ansible_version: 9.0.1
+  role_name: wordpress_backup
+  platforms:
+    - name: EL
+      release:
+        - 8
+        - 9
