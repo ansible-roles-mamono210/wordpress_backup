@@ -22,7 +22,7 @@
 
 - name: Dump MariaDB / Database
   ansible.builtin.command:
-    "wp db export
+    "sudo -u apache /usr/local/bin/wp db export
      {{ wp_backup_data_path }}/{{ wp_db_dump_data_sql }}
      --allow-root"
   register: wp_cli
