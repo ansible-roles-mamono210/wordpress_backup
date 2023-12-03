@@ -25,7 +25,7 @@
 
     - name: Make sure database dumped file exists
       ansible.builtin.assert:
-        that: db_dumpt_file_stat.stat.exists == true
+        that: db_dump_file_stat.stat.exists == true
 
     - name: Show OS version
       ansible.builtin.debug:
